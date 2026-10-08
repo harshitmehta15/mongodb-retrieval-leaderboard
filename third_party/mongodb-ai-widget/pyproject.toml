@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mongodb-ai-widget-challenge"
+version = "1.4"
+description = "A Jupyter widget for exploring MongoDB AI capabilities through a challenge"
+authors = [{ name = "Thibaut Gourdel", email = "thibaut.gourdel@mongodb.com" }]
+license = { file = "LICENSE" }
+readme = "README.md"
+requires-python = ">=3.7"
+dependencies = [
+    "anywidget",
+    "ipywidgets",
+    "traitlets",
+    "langchain>=1.0",
+    "langchain-core>=1.0",
+    "langchain-community",
+    "langchain-classic",
+    "langchain-mongodb",
+    "langchain_voyageai",
+    "pymongo",
+    "pypdf",
+    "tiktoken"
+]
+
+[project.optional-dependencies]
+dev = ["build", "twine"]
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+include = [
+    "mongodb_ai_widget_challenge",
+]
+
+[tool.setuptools.package-data]
+"mongodb_ai_widget_challenge" = ["*.js", "*.css"]
+
+[tool.setuptools.exclude-package-data]
+"mongodb_ai_widget_challenge" = ["node_modules/*", "node_modules/**/*", "dist/*", ".vite/*"]
+
+[project.urls]
+Homepage = "https://github.com/mongodb-developer/mongodb-ai-widgets"
+Repository = "https://github.com/mongodb-developer/mongodb-ai-widgets"

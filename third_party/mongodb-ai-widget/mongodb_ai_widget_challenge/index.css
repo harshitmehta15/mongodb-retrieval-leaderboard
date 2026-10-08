@@ -1,0 +1,1937 @@
+/* index.css */
+/* index.css – keep existing styles as your light theme defaults */
+/* Dark mode backgrounds */
+/* Dark mode base background and text */
+#mongodb-ai-playground.dark-theme,
+#mongodb-ai-playground.dark-theme .content-wrapper {
+  background-color: #011e2b;
+  color: #f9fafb;
+}
+
+/* Panels / cards */
+#mongodb-ai-playground.dark-theme #settings-section,
+#mongodb-ai-playground.dark-theme #document-view,
+#mongodb-ai-playground.dark-theme #rag-answer,
+#mongodb-ai-playground.dark-theme .chunk-card,
+#mongodb-ai-playground.dark-theme .doc-card {
+  background-color: #1C2D39;
+  font-family: "Euclid Circular A", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: rgb(232, 237, 235);
+  border-radius: 12px;
+  border: 1px solid #3D4F58;
+  background: #1C2D38;
+  /* card border */
+}
+
+/* Source document preview text: black so it pops against light highlights */
+#mongodb-ai-playground.dark-theme #document-view span {
+  color: #ffffff;
+}
+
+/* MongoDB document field names (keys) in white */
+#mongodb-ai-playground.dark-theme .doc-key {
+  color: #ffffff;
+}
+
+/* Inputs in settings panels */
+#mongodb-ai-playground.dark-theme #settings-section input[type="text"],
+#mongodb-ai-playground.dark-theme #settings-section input[type="range"],
+#mongodb-ai-playground.dark-theme #settings-section select,
+#mongodb-ai-playground.dark-theme #settings-section textarea,
+/* ADDED: Include number inputs for dark theme styling */
+#mongodb-ai-playground.dark-theme #settings-section input[type="number"] {
+  background-color: #112733;
+  /* inner field background */
+  border: 1px solid #124151;
+  /* field border */
+  color: #f9fafb;
+  margin-bottom: 0;
+}
+
+/* Placeholders */
+#mongodb-ai-playground.dark-theme #settings-section input::placeholder,
+#mongodb-ai-playground.dark-theme #settings-section textarea::placeholder {
+  color: #9ca3af;
+}
+
+/* Focus state for fields */
+#mongodb-ai-playground.dark-theme #settings-section input:focus,
+#mongodb-ai-playground.dark-theme #settings-section select:focus,
+#mongodb-ai-playground.dark-theme #settings-section textarea:focus {
+  border-color: #00ed64;
+  outline: none;
+  box-shadow: 0 0 0 1px rgba(0, 237, 100, 0.35);
+}
+
+.column-content {
+  display: flex;
+  flex-direction: column;
+  /* Reduced from 400px to ensure it fits alongside taller settings */
+}
+
+/* Ensure document view, chunks container, doc list containers, and rag answer stretch vertically */
+.column-content #document-view,
+.column-content #chunks-table-container,
+.column-content #doc-list-container,
+.column-content #rag-answer {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+/* Buttons (Dark Mode) - FIX: Use flex properties for proper vertical centering */
+#mongodb-ai-playground.dark-theme .action-button {
+  appearance: none;
+  padding: 0 12px;
+  /* Standard horizontal padding */
+  margin: 0px;
+  display: inline-flex;
+  justify-content: center;
+  /* Center horizontally */
+  align-items: center;
+  /* Center vertically */
+  transition: 150ms ease-in-out;
+  position: relative;
+  text-decoration: none;
+  cursor: pointer;
+  z-index: 0;
+  font-family: "Euclid Circular A", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  border-radius: 6px;
+  background-color: rgb(0, 104, 74);
+  border: 1px solid rgb(0, 237, 100);
+  color: rgb(255, 255, 255);
+  font-size: 13px;
+  font-weight: 500;
+  height: 36px;
+}
+
+#mongodb-ai-playground.dark-theme .action-button:hover:not([disabled]),
+#mongodb-ai-playground.dark-theme .action-button:active:not([disabled]) {
+  background: #00593F;
+  color: #ffffff;
+  box-shadow: 0 0 0 1px rgba(0, 237, 100, 0.35);
+}
+
+/* Chunk/doc tags */
+#mongodb-ai-playground.dark-theme .chunk-tag,
+#mongodb-ai-playground.dark-theme .doc-tag {
+  background: #112733;
+  border: 1px solid #124151;
+  color: #f9fafb;
+}
+
+/* Tabs and underline */
+#mongodb-ai-playground.dark-theme .steps-nav {
+  border-bottom-color: #ffffff;
+}
+
+#mongodb-ai-playground.dark-theme .active-step {
+  border-bottom-color: #00ed64;
+  color: #e5e7eb;
+}
+
+#mongodb-ai-playground {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  overflow: visible;
+  position: relative;
+}
+
+/* For JupyterLab's "Create New View for Cell Output" */
+.jp-OutputArea-standalone #mongodb-ai-playground,
+.jp-OutputArea-child:only-child #mongodb-ai-playground {
+  height: auto;
+}
+
+.content-wrapper {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+  padding: 10px;
+}
+
+.widget-shell-header {
+  margin-bottom: 0.75rem;
+}
+
+.widget-header {
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.widget-title-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.widget-title {
+  margin: unset;
+  font-size: 32px;
+  line-height: 40px;
+  font-weight: 400;
+  font-family: "MongoDB Value Serif", "Times New Roman", serif;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: rgb(0, 30, 43);
+}
+
+#mongodb-ai-playground.dark-theme .widget-title {
+  color: #f9fafb;
+}
+
+.widget-title-row .info-tooltip {
+  padding: 0;
+  margin-left: 0;
+}
+
+#mongodb-ai-playground.dark-theme .icon-button {
+  background: #112733;
+  color: #f9fafb;
+  border-color: #124151;
+}
+
+#mongodb-ai-playground.dark-theme .icon-button:hover,
+#mongodb-ai-playground.dark-theme .icon-button.active {
+  border-color: #00ed64;
+  box-shadow: 0 0 0 3px rgba(0, 237, 100, 0.16);
+}
+
+#mongodb-ai-playground.dark-theme .info-tooltip-trigger {
+  color: #00ed64;
+  border-color: #6b7280;
+}
+
+#mongodb-ai-playground.dark-theme .field-label .info-tooltip-trigger {
+  color: #b7c0c3;
+}
+
+#mongodb-ai-playground.dark-theme .info-tooltip-bubble {
+  background: #f9fbfa;
+  color: #001e2b;
+}
+
+#mongodb-ai-playground.dark-theme .override-settings-panel {
+  background: #1c2d38;
+  border-color: #3d4f58;
+}
+
+#mongodb-ai-playground.dark-theme .override-status-message {
+  color: #8af5c2;
+}
+
+.icon-button {
+  border: 1px solid #c1c7c6;
+  background: #f9fbfa;
+  color: #001e2b;
+  border-radius: 999px;
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: box-shadow 120ms ease, border-color 120ms ease, background 120ms ease;
+}
+
+.icon-button svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+.icon-button:hover,
+.icon-button.active {
+  border-color: #00684a;
+  box-shadow: 0 0 0 3px #e8edeb;
+}
+
+.info-tooltip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 2px;
+  margin-left: 0.125rem;
+}
+
+.info-tooltip-trigger {
+  width: 20px;
+  height: 20px;
+  border: none;
+  background: transparent;
+  color: #00684a;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  cursor: help;
+  isolation: isolate;
+}
+
+.info-tooltip-trigger::before {
+  content: "";
+  transition: 150ms ease-in-out;
+  position: absolute;
+  inset: 0;
+  border-radius: 100%;
+  transform: scale(0.8);
+  background-color: rgb(232, 237, 235);
+  opacity: 0;
+  z-index: -1;
+}
+
+.info-tooltip-trigger svg {
+  width: 16px;
+  height: 16px;
+}
+
+.field-label .info-tooltip {
+  padding: 1px;
+  margin-left: 0.25rem;
+}
+
+.field-label .info-tooltip-trigger {
+  width: 13px;
+  height: 13px;
+  color: #a8b0b2;
+}
+
+.field-label .info-tooltip-trigger svg {
+  width: 9px;
+  height: 9px;
+}
+
+.field-label .info-tooltip-bubble {
+  font-family: "MongoDB Value Serif", "Times New Roman", serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.35;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.info-tooltip:hover .info-tooltip-trigger::before,
+.info-tooltip:focus-within .info-tooltip-trigger::before {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.info-tooltip-bubble {
+  position: absolute;
+  min-width: 220px;
+  max-width: 280px;
+  padding: 0.625rem 0.75rem;
+  border-radius: 8px;
+  background: #001e2b;
+  color: #f9fbfa;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.45;
+  font-family: "MongoDB Value Serif", "Times New Roman", serif;
+  box-shadow: 0 12px 28px rgba(0, 30, 43, 0.18);
+  pointer-events: none;
+  z-index: 20;
+}
+
+.override-settings-panel {
+  padding: 1rem;
+  background: #f9fbfa;
+  border: 1px solid #e8edeb;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+}
+
+.override-settings-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem 1rem;
+}
+
+.override-settings-wide {
+  grid-column: span 2;
+}
+
+.override-status-message {
+  margin-top: 0.75rem;
+  color: #00684a;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+/* Error alert at the bottom */
+#error-alert,
+.alert.alert-danger {
+  flex-shrink: 0;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 10px;
+  overflow-y: auto;
+}
+
+/* Ensure error box is always visible above content */
+#error-alert {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #dc3545;
+  border-radius: 8px;
+  font-weight: bold;
+  display: none;
+  padding: 10px;
+  min-height: 40px;
+  max-height: 90px;
+  overflow-y: auto;
+}
+
+#error-alert[style*="display: block"] {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+#mongodb-ai-playground>.sub-tabs-nav,
+#mongodb-ai-playground>.steps-nav {
+  flex: 0 0 auto;
+}
+
+#mongodb-ai-playground>div:not(.sub-tabs-nav):not(.steps-nav) {
+  flex: 1 1 auto;
+  overflow: auto;
+}
+
+/* Basic container styling */
+#chunking-section>div:first-child {}
+
+/* The container that holds document preview and chunks table */
+#chunking-section>div:nth-child(2),
+#rag-section>.two-column-layout {
+  display: flex;
+  gap: 3rem;
+  font-family: 'Euclid Circular A', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+/* Optional, to be explicit */
+#rag-section {
+  display: block;
+}
+
+#embedding-section {
+  display: flex;
+  flex-direction: column;
+}
+
+#embedding-section .two-column-layout {
+  flex: 1 1 auto;
+}
+
+/* Steps navigation */
+.steps-nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  list-style: none;
+  padding: 0;
+  border-bottom: 3px solid #c1c7c6;
+}
+
+.step-button {
+  background: none;
+  border: none;
+  color: #c1c7c6;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1;
+  text-transform: capitalize;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  outline: none;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -3px;
+}
+
+.step-button:hover {
+  color: #464c4f;
+  background-color: transparent;
+}
+
+.active-step {
+  color: #464c4f;
+  border-bottom-color: #006400;
+}
+
+/* Light Mode / Base .action-button */
+.action-button {
+  background: #F9FBFA;
+  border: 1px solid #889397;
+  color: #001E2B;
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 500;
+  height: 36px;
+  line-height: 34px;
+  padding: 0 12px;
+  text-transform: capitalize;
+  cursor: pointer;
+  transition: all 120ms ease;
+  text-decoration: none;
+  outline: none;
+  font-family: "Euclid Circular A", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  border-radius: 6px !important;
+}
+
+/* Increased specificity for light mode button to prevent JLab button override */
+#mongodb-ai-playground .action-button {
+  margin: initial;
+  padding: 0 12px;
+}
+
+#mongodb-ai-playground .action-button:hover:not([disabled]),
+#mongodb-ai-playground .action-button:active:not([disabled]) {
+  color: #001E2B;
+  background: #F9FBFA;
+  box-shadow: 0 0 0 3px #E8EDEB;
+  outline: 0;
+}
+
+/* Labels and inputs */
+.control-group label,
+.field-label {
+  display: block;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #889397;
+  font-size: 10px;
+  letter-spacing: 0.5px;
+  margin-bottom: 0;
+  line-height: 16px;
+}
+
+.field-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  min-height: 16px;
+  width: fit-content;
+  max-width: 100%;
+}
+
+#mongodb-ai-playground button[disabled] {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Textarea styling */
+#mongodb-ai-playground textarea {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 0.5rem;
+  /* FONT FIX: Change to use the primary font */
+  font-family: "Euclid Circular A", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  color: #333;
+  resize: vertical;
+}
+
+#mongodb-ai-playground textarea:focus {
+  outline: none;
+  border-color: #0b5d3a;
+}
+
+/* Error message (legacy) */
+.error-message {
+  display: none;
+}
+
+/* --- STANDARDIZED SETTINGS CONTROLS --- */
+#settings-section {
+  display: grid;
+  /* Default to 3 columns, but specific sections override */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem 1.5rem;
+  /* Standardized gap */
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  padding: 1rem;
+  background: #f9fbfa;
+  border-radius: 8px;
+  border: 1px solid #e8edeb;
+  /* Constrain height to prevent plugin from growing too tall */
+  max-height: 180px;
+  overflow: visible;
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 0;
+  /* Ensures control group respects grid boundaries */
+}
+
+.control-help-text {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.4;
+  color: #5f6b6d;
+}
+
+#mongodb-ai-playground.dark-theme .control-help-text {
+  color: #c1c7c6;
+}
+
+/* Group containing buttons */
+.control-group>div:has(button) {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+  height: 36px;
+  /* Standard height to align with inputs */
+}
+
+.range-control {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  height: 36px;
+  /* Standard height */
+}
+
+.range-value {
+  min-width: 50px;
+  text-align: right;
+  font-weight: 600;
+  color: #001e2b;
+  font-size: 14px;
+}
+
+#settings-section select {
+  border: 1px solid #e8edeb;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 13px;
+  padding: 0.5rem;
+  width: 100%;
+  background: white;
+  height: 36px;
+}
+
+#settings-section input[type="range"] {
+  flex: 1;
+  margin: 0;
+  accent-color: #00593f;
+}
+
+#mongodb-ai-playground input[type="checkbox"] {
+  accent-color: #00593f;
+}
+
+/* UPDATED: Target all single-line text/number inputs for standardized styling */
+#settings-section input[type="text"],
+#settings-section input[type="number"],
+#settings-section input[type="password"],
+.playground-input {
+  border: 1px solid #e8edeb;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 13px;
+  padding: 0.5rem 0.75rem;
+  /* Standardized padding */
+  background: #fff;
+  color: #001e2b;
+  width: 100%;
+  /* Important for standardization */
+  box-sizing: border-box;
+  height: 36px;
+  font-family: "Euclid Circular A", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.scoreboard-name-input {
+  border: 1px solid #e8edeb;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 13px;
+  padding: 0.5rem 0.75rem;
+  background: #fff;
+  color: #001e2b;
+  width: 100%;
+  box-sizing: border-box;
+  height: 36px;
+  font-family: "Euclid Circular A", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.scoreboard-publish-row {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  flex-wrap: nowrap;
+  width: 100%;
+}
+
+.scoreboard-name-input::placeholder {
+  color: #889397;
+}
+
+.scoreboard-publish-row .scoreboard-name-input {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.scoreboard-publish-button {
+  flex: 0 0 auto;
+  min-width: 150px;
+  white-space: nowrap;
+}
+
+#settings-section textarea {
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 80px;
+  /* Minimum height for textarea */
+  height: auto;
+  font-size: 13px;
+  padding: 0.5rem 0.75rem;
+}
+
+/* --- STEP-SPECIFIC GRID OVERRIDES --- */
+
+/* Chunking & Embedding steps (4 columns) */
+#chunking-section #settings-section,
+#embedding-section #settings-section {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+#embedding-section #settings-section .control-group {
+  grid-column: auto;
+}
+
+#embedding-section #settings-section .embedding-index-name-group {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+#embedding-section #settings-section .embedding-destination-group {
+  grid-column: 4;
+  grid-row: 1;
+}
+
+#embedding-section #settings-section .embedding-dimensions-group {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+#embedding-section #settings-section .embedding-output-dtype-group {
+  grid-column: 4;
+  grid-row: 2;
+}
+
+/* Alignment for the Destination Collection input/button group */
+#embedding-section #settings-section .embedding-destination-group > div {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  height: 36px;
+  flex-wrap: nowrap;
+}
+
+#embedding-section #settings-section .embedding-destination-group input[type="text"] {
+  flex: 1;
+  min-width: 0;
+}
+
+#embedding-section #settings-section .embedding-destination-group button {
+  flex-shrink: 0;
+  margin: 0;
+}
+
+#embedding-section #settings-section .embedding-index-name-group input[type="text"],
+#embedding-section #settings-section .embedding-dimensions-group select,
+#embedding-section #settings-section .embedding-output-dtype-group select {
+  width: 100%;
+}
+
+
+/* RAG section (4 columns for row alignment) */
+#rag-section #settings-section {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  /* Reduce padding and gap slightly */
+  padding: 0.75rem 1rem;
+  gap: 0.5rem 1.25rem;
+  max-height: 190px;
+}
+
+#rag-section #settings-section .search-query-group,
+#rag-section #settings-section .search-query-embedding-group,
+#rag-section #settings-section .search-top-k-group,
+#rag-section #settings-section .search-score-threshold-group,
+#rag-section #settings-section .search-hybrid-group,
+#rag-section #settings-section .search-fulltext-penalty-group,
+#rag-section #settings-section .search-vector-penalty-group,
+#rag-section #settings-section .search-action-group {
+  grid-column: auto;
+}
+
+#rag-section #settings-section .search-hybrid-group {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+#rag-section #settings-section .search-fulltext-penalty-group {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+#rag-section #settings-section .search-vector-penalty-group {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+#rag-section #settings-section .search-action-group {
+  grid-column: 4;
+  grid-row: 2;
+}
+
+#reranking-section #settings-section {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+#benchmark-section #settings-section {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.inline-checkbox-label {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 0.5rem;
+  height: 36px;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  text-transform: none !important;
+  color: #001e2b !important;
+}
+
+.inline-checkbox-label input[type="checkbox"] {
+  margin: 0;
+}
+
+.rerank-flow-wrapper {
+  position: relative;
+  margin-top: 1rem;
+}
+
+.rerank-connector-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+  z-index: 2;
+}
+
+.rerank-connector-layer line {
+  color: #49ED64;
+  stroke: #49ED64;
+  stroke-width: 2;
+  stroke-dasharray: 6 6;
+  opacity: 0.7;
+  stroke-linecap: round;
+}
+
+.rerank-card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.rerank-card {
+  position: relative;
+  z-index: 1;
+}
+
+.rerank-badge-row,
+.benchmark-card-badges {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.rerank-card .chunk-tag,
+.benchmark-explain-card .chunk-tag {
+  position: static;
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+}
+
+.rerank-meta-row {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 0.75rem;
+  padding-right: 0;
+  min-width: 0;
+}
+
+.rerank-rank-label {
+  font-size: 12px;
+  color: #5f6b6d;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.rerank-score-pill {
+  font-size: 12px;
+  color: #0b5d3a;
+  background: #e3fcf0;
+  border: 1px solid #b8f2d3;
+  border-radius: 999px;
+  padding: 0.2rem 0.6rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.benchmark-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem 1rem;
+}
+
+.benchmark-summary-card {
+  min-height: 0;
+  padding: 0.85rem 1rem;
+}
+
+.benchmark-summary-item {
+  min-width: 0;
+}
+
+.benchmark-summary-item-wide {
+  grid-column: 1 / -1;
+}
+
+.benchmark-score-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  flex-wrap: nowrap;
+}
+
+.benchmark-score-block {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.benchmark-publish-controls {
+  margin-left: auto;
+  min-width: 320px;
+  max-width: 420px;
+  flex: 0 1 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.hybrid-breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.hybrid-breakdown-row {
+  padding: 0.85rem 1rem;
+  border: 1px solid #e8edeb;
+  border-radius: 10px;
+  background: #f9fbfa;
+}
+
+.hybrid-breakdown-header,
+.hybrid-breakdown-meta,
+.hybrid-breakdown-legend {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.hybrid-breakdown-header {
+  margin-bottom: 0.45rem;
+}
+
+.hybrid-breakdown-rank,
+.hybrid-breakdown-score {
+  font-size: 13px;
+  font-weight: 700;
+  color: #001e2b;
+}
+
+.hybrid-breakdown-bar-wrap {
+  width: 100%;
+  height: 12px;
+  background: #e8edeb;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.hybrid-breakdown-bar {
+  height: 100%;
+  display: flex;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.hybrid-breakdown-bar-vector,
+.hybrid-breakdown-bar-search {
+  height: 100%;
+}
+
+.hybrid-breakdown-bar-vector,
+.hybrid-breakdown-legend-vector {
+  background: #49ed64;
+}
+
+.hybrid-breakdown-bar-search,
+.hybrid-breakdown-legend-search {
+  background: #3b82f6;
+}
+
+.hybrid-breakdown-meta {
+  margin-top: 0.45rem;
+  font-size: 12px;
+  color: #5f6b6d;
+}
+
+.hybrid-breakdown-legend {
+  margin-top: 0.25rem;
+  justify-content: flex-start;
+}
+
+.hybrid-breakdown-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 12px;
+  color: #5f6b6d;
+}
+
+.hybrid-breakdown-legend-swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  display: inline-block;
+}
+
+.indexing-progress-panel {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border: 1px solid #d7e3df;
+  border-radius: 12px;
+  background: linear-gradient(180deg, #f9fbfa 0%, #eef6f2 100%);
+}
+
+.indexing-progress-panel.is-complete {
+  border-color: #b8f2d3;
+  background: linear-gradient(180deg, #f4fff8 0%, #e9fbf0 100%);
+}
+
+.indexing-progress-panel.is-error {
+  border-color: #f2b8be;
+  background: linear-gradient(180deg, #fff7f8 0%, #fdecee 100%);
+}
+
+.indexing-progress-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.65rem;
+}
+
+.indexing-progress-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #001e2b;
+}
+
+.indexing-progress-subtitle {
+  margin-top: 0.2rem;
+  font-size: 12px;
+  color: #5f6b6d;
+}
+
+.indexing-progress-percent {
+  font-size: 13px;
+  font-weight: 700;
+  color: #5f6b6d;
+  white-space: nowrap;
+}
+
+.indexing-progress-message {
+  margin-bottom: 0.65rem;
+  font-size: 13px;
+  color: #33434a;
+}
+
+.indexing-progress-bar-wrap {
+  width: 100%;
+  height: 12px;
+  border-radius: 999px;
+  background: #d7e3df;
+  overflow: hidden;
+}
+
+.indexing-progress-bar {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #13aa52 0%, #49ed64 100%);
+  transition: width 180ms ease;
+}
+
+#mongodb-ai-playground.dark-theme .indexing-progress-panel {
+  border-color: #3d4f58;
+  background: linear-gradient(180deg, #10232f 0%, #162c38 100%);
+}
+
+#mongodb-ai-playground.dark-theme .indexing-progress-panel.is-complete {
+  border-color: #1f7a46;
+  background: linear-gradient(180deg, #0f2d23 0%, #13342a 100%);
+}
+
+#mongodb-ai-playground.dark-theme .indexing-progress-panel.is-error {
+  border-color: #8b4d58;
+  background: linear-gradient(180deg, #341b22 0%, #2a161c 100%);
+}
+
+#mongodb-ai-playground.dark-theme .indexing-progress-title,
+#mongodb-ai-playground.dark-theme .indexing-progress-percent {
+  color: #f9fafb;
+}
+
+#mongodb-ai-playground.dark-theme .indexing-progress-subtitle,
+#mongodb-ai-playground.dark-theme .indexing-progress-message {
+  color: #c1c7c6;
+}
+
+#mongodb-ai-playground.dark-theme .indexing-progress-bar-wrap {
+  background: #2f4150;
+}
+
+.benchmark-category-card {
+  border-top: 1px solid #e8edeb;
+  padding-top: 0.85rem;
+  margin-top: 0.25rem;
+}
+
+.benchmark-category-title {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #0b5d3a;
+  margin-bottom: 0.7rem;
+}
+
+.benchmark-metric-pairs,
+.benchmark-result-metric-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.benchmark-metric-pair-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem 1rem;
+}
+
+.benchmark-metric-cell {
+  min-width: 0;
+}
+
+.benchmark-summary-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #5f6b6d;
+  margin-bottom: 0.25rem;
+}
+
+.benchmark-summary-value {
+  font-size: 22px;
+  font-weight: 700;
+  color: #001e2b;
+  line-height: 1.15;
+}
+
+.benchmark-summary-value-compact {
+  font-size: 14px;
+  line-height: 1.35;
+  text-transform: none;
+  word-break: break-word;
+}
+
+.benchmark-result-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.benchmark-question {
+  font-weight: 700;
+  color: #001e2b;
+  margin-bottom: 0.5rem;
+  padding-right: 7rem;
+}
+
+.benchmark-actions-row {
+  margin-top: 0.75rem;
+}
+
+.scoreboard-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.scoreboard-header .section-title {
+  margin-bottom: 0;
+}
+
+.scoreboard-table-wrap {
+  overflow-x: auto;
+}
+
+.scoreboard-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 16px;
+}
+
+.scoreboard-table thead tr {
+  border-bottom: 2px solid #d5dbd9;
+}
+
+.scoreboard-table th {
+  text-align: left;
+  padding: 0.95rem 0.85rem;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #5f6b6d;
+}
+
+.scoreboard-table td {
+  padding: 1rem 0.85rem;
+  font-size: 17px;
+  font-weight: 500;
+  color: #001e2b;
+}
+
+.scoreboard-table tbody tr {
+  border-bottom: 1px solid #e1e7e5;
+  transition: background-color 0.15s ease;
+}
+
+.scoreboard-table tbody tr:hover {
+  background-color: #f1f5f4;
+}
+
+.scoreboard-rank-cell {
+  white-space: nowrap;
+}
+
+.scoreboard-rank-badge {
+  display: inline-block;
+  min-width: 2.5rem;
+  font-size: 18px;
+  margin-right: 0.35rem;
+}
+
+#mongodb-ai-playground.dark-theme .scoreboard-table thead tr {
+  border-bottom-color: #3d4f58;
+}
+
+#mongodb-ai-playground.dark-theme .scoreboard-table th {
+  color: #9fb0b7;
+}
+
+#mongodb-ai-playground.dark-theme .scoreboard-table td {
+  color: #e8edeb;
+}
+
+#mongodb-ai-playground.dark-theme .scoreboard-table tbody tr {
+  border-bottom-color: #2a3d47;
+}
+
+#mongodb-ai-playground.dark-theme .scoreboard-table tbody tr:hover {
+  background-color: #243842;
+}
+
+#mongodb-ai-playground.dark-theme .scoreboard-name-input {
+  background-color: #112733;
+  border: 1px solid #124151;
+  color: #f9fafb;
+}
+
+#mongodb-ai-playground.dark-theme .scoreboard-name-input::placeholder {
+  color: #9ca3af;
+}
+
+#mongodb-ai-playground.dark-theme .hybrid-breakdown-row {
+  background: #1c2d38;
+  border-color: #3d4f58;
+}
+
+#mongodb-ai-playground.dark-theme .hybrid-breakdown-rank,
+#mongodb-ai-playground.dark-theme .hybrid-breakdown-score {
+  color: #f9fafb;
+}
+
+#mongodb-ai-playground.dark-theme .hybrid-breakdown-bar-wrap {
+  background: #112733;
+}
+
+#mongodb-ai-playground.dark-theme .hybrid-breakdown-meta,
+#mongodb-ai-playground.dark-theme .hybrid-breakdown-legend-item {
+  color: #9fb0b7;
+}
+
+.benchmark-explain-view {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.benchmark-detail-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.benchmark-back-button {
+  min-width: auto;
+  flex-shrink: 0;
+}
+
+.benchmark-detail-title-group {
+  min-width: 0;
+}
+
+.benchmark-detail-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #5f6b6d;
+  margin-bottom: 0.35rem;
+}
+
+.benchmark-detail-question {
+  margin: 0;
+  font-size: 1.2rem;
+  line-height: 1.35;
+  color: #001e2b;
+}
+
+.benchmark-explain-flow {
+  margin-top: 0;
+}
+
+.benchmark-meta-row {
+  padding-right: 0;
+}
+
+.benchmark-explain-card {
+  border-color: #c1c7c6;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.rerank-card .chunk-text,
+.benchmark-explain-card .chunk-text {
+  margin-top: 0;
+}
+
+.benchmark-explain-card.benchmark-expected-card {
+  background-color: #d7f9e4;
+  background-image: none;
+  border-color: #7de3aa;
+  box-shadow: 0 0 0 1px rgba(0, 237, 100, 0.18);
+}
+
+.rerank-connector-layer line.rerank-line-static {
+  opacity: 0.45;
+}
+
+.rerank-connector-layer line.rerank-line-moved {
+  stroke-width: 2.5;
+  opacity: 0.9;
+}
+
+.rerank-connector-layer line.rerank-line-active {
+  color: #49ED64;
+  stroke: #49ED64;
+  opacity: 1;
+}
+
+.rerank-connector-layer line.rerank-line-dimmed {
+  color: #889397;
+  stroke: #889397;
+  opacity: 0.28;
+}
+
+#rag-section #settings-section .query-and-button-group {
+  grid-column: 1 / 2;
+  /* Occupy the first column */
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  /* NEW ALIGNMENT FIX: Nest the input and button to constrain the height */
+  position: relative;
+}
+
+/* NEW ALIGNMENT FIX: Container for the Query Input and Button */
+#rag-section #settings-section .query-and-button-group>div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  /* Ensure this div is present in your JSX for this to work */
+}
+
+/* The Query Input should take the first row of space */
+#rag-section #settings-section .query-and-button-group input[type="text"] {
+  /* Leave default height: 36px */
+  margin-bottom: 0.5rem;
+  /* Separates the input from the button below it */
+}
+
+/* The Send button should align just below the Query Input */
+#rag-section #settings-section .query-and-button-group>button {
+  width: 100%;
+  /* Make the button match the input field's width */
+}
+
+/* The Prompt Template will now occupy the fourth column, and needs extra height */
+#rag-section #settings-section .prompt-template-group {
+  grid-column: 4 / 5;
+  /* Occupy the fourth column */
+}
+
+/* Prompt Template Textarea needs to span the height of the two rows used by the Query/Button group */
+#rag-section #settings-section .prompt-template-group textarea {
+  /* Reduced from 90px to allow more room for the results below */
+  min-height: 70px;
+  max-height: 70px;
+}
+/* Responsive fallback for smaller screens */
+@media (max-width: 1024px) {
+
+  .override-settings-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .override-settings-wide {
+    grid-column: auto;
+  }
+
+  #chunking-section #settings-section,
+  #embedding-section #settings-section {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  /* MODIFIED: RAG section collapses to 1 column on small screens */
+  #rag-section #settings-section {
+    grid-template-columns: 1fr;
+  }
+
+  #reranking-section #settings-section {
+    grid-template-columns: 1fr;
+  }
+
+  #benchmark-section #settings-section {
+    grid-template-columns: 1fr;
+  }
+
+  /* Ensure all RAG-specific control groups span the full 1 column */
+  #rag-section #settings-section .query-and-button-group,
+  #rag-section #settings-section .prompt-template-group,
+  /* Target the new Top K and Score Threshold controls based on their position */
+  #rag-section #settings-section .control-group:nth-child(2),
+  #rag-section #settings-section .control-group:nth-child(3) {
+    grid-column: 1 / 1;
+  }
+
+  #reranking-section #settings-section .control-group {
+    grid-column: 1 / 1;
+  }
+
+  .benchmark-summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .benchmark-score-row {
+    flex-wrap: wrap;
+  }
+
+  .benchmark-publish-controls {
+    margin-left: 0;
+    min-width: 0;
+    max-width: none;
+    flex: 1 1 100%;
+  }
+
+  .benchmark-metric-pair-row {
+    grid-template-columns: 1fr;
+  }
+
+  /* Reset height for textarea in 1-column view */
+  #rag-section #settings-section .prompt-template-group textarea {
+    min-height: 80px;
+  }
+}
+
+/* --- SCROLLBAR AUTO-HIDE STYLES (APPLIED TO ALL PANELS) --- */
+
+/* Combined selector for all main scrollable areas */
+#document-view,
+#chunks-table-container,
+#doc-list-container,
+#rag-answer,
+.chunk-card-container,
+#doc-list-container .doc-card-container {
+  flex: 1 1 auto;
+  /* <-- Fill the rest of the vertical space */
+  max-height: none;
+  overflow-y: auto;
+
+  /* Light Mode/Base Scrollbar Styles */
+
+  /* 1. WebKit Browsers (Chrome, Safari, new Edge): Hide thumb by default */
+  &::-webkit-scrollbar {
+    width: 8px;
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    /* Invisible by default */
+    border-radius: 4px;
+  }
+
+  /* 2. Firefox: Use 'thin' scrollbar and set transparent track */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+
+  /* 3. Reserve scrollbar space to prevent content jump */
+  scrollbar-gutter: stable;
+
+  /* 4. For older Edge/IE - Keep default 'auto' */
+  -ms-overflow-style: auto;
+}
+
+/* Light Mode: Show the thumb when the element is hovered over or actively scrolling */
+#document-view:hover::-webkit-scrollbar-thumb,
+#document-view:active::-webkit-scrollbar-thumb,
+#chunks-table-container:hover::-webkit-scrollbar-thumb,
+#chunks-table-container:active::-webkit-scrollbar-thumb,
+#doc-list-container:hover::-webkit-scrollbar-thumb,
+#doc-list-container:active::-webkit-scrollbar-thumb,
+#rag-answer:hover::-webkit-scrollbar-thumb,
+#rag-answer:active::-webkit-scrollbar-thumb,
+.chunk-card-container:hover::-webkit-scrollbar-thumb,
+.chunk-card-container:active::-webkit-scrollbar-thumb,
+#doc-list-container .doc-card-container:hover::-webkit-scrollbar-thumb,
+#doc-list-container .doc-card-container:active::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+/* Settings section scrollbar styling */
+#settings-section {
+  scrollbar-width: none;
+  scrollbar-color: transparent transparent;
+  scrollbar-gutter: auto;
+}
+
+#settings-section::-webkit-scrollbar {
+  width: 0;
+  background-color: transparent;
+}
+
+#settings-section::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 4px;
+}
+
+#settings-section:hover::-webkit-scrollbar-thumb,
+#settings-section:active::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+#settings-section input[type="text"][disabled],
+#settings-section input[type="text"][readOnly],
+#settings-section input[type="number"][disabled],
+#settings-section input[type="number"][readOnly],
+#settings-section input[type="password"][disabled],
+#settings-section input[type="password"][readOnly],
+#settings-section textarea[disabled],
+#settings-section textarea[readOnly] {
+  background-color: #e8edeb;
+  color: #889397;
+  cursor: default;
+  border-color: #c1c7c6;
+}
+
+#mongodb-ai-playground.dark-theme #settings-section input[type="text"],
+#mongodb-ai-playground.dark-theme #settings-section input[type="number"],
+#mongodb-ai-playground.dark-theme #settings-section input[type="password"],
+#mongodb-ai-playground.dark-theme .playground-input,
+#mongodb-ai-playground.dark-theme #settings-section select,
+#mongodb-ai-playground.dark-theme #settings-section textarea {
+  background-color: #112733;
+  border: 1px solid #124151;
+  color: #f9fafb;
+}
+
+#mongodb-ai-playground.dark-theme #settings-section input[type="text"][disabled],
+#mongodb-ai-playground.dark-theme #settings-section input[type="text"][readOnly],
+#mongodb-ai-playground.dark-theme #settings-section input[type="number"][disabled],
+#mongodb-ai-playground.dark-theme #settings-section input[type="number"][readOnly],
+#mongodb-ai-playground.dark-theme #settings-section input[type="password"][disabled],
+#mongodb-ai-playground.dark-theme #settings-section input[type="password"][readOnly],
+#mongodb-ai-playground.dark-theme #settings-section textarea[disabled],
+#mongodb-ai-playground.dark-theme #settings-section textarea[readOnly] {
+  background-color: #0d212b;
+  color: #9ca3af;
+  border-color: #0b5d3a;
+  opacity: 1;
+  cursor: default;
+}
+
+#mongodb-ai-playground.dark-theme #loadButton:disabled {
+  /* Keep your existing dark mode disabled button styling */
+  opacity: 0.7;
+  cursor: not-allowed;
+  background-color: #004d37;
+  border-color: #00ed64;
+}
+
+#mongodb-ai-playground.dark-theme .inline-checkbox-label {
+  color: #f9fafb !important;
+}
+
+#mongodb-ai-playground.dark-theme .rerank-connector-layer line {
+  color: #49ED64;
+  stroke: #49ED64;
+}
+
+#mongodb-ai-playground.dark-theme .rerank-rank-label {
+  color: #c1c7c6;
+}
+
+#mongodb-ai-playground.dark-theme .rerank-score-pill {
+  color: #d9fff0;
+  background: rgba(0, 237, 100, 0.12);
+  border-color: rgba(0, 237, 100, 0.35);
+}
+
+#mongodb-ai-playground.dark-theme .benchmark-summary-label {
+  color: #c1c7c6;
+}
+
+#mongodb-ai-playground.dark-theme .benchmark-summary-value,
+#mongodb-ai-playground.dark-theme .benchmark-question,
+#mongodb-ai-playground.dark-theme .benchmark-detail-question {
+  color: #f9fafb;
+}
+
+#mongodb-ai-playground.dark-theme .benchmark-category-card {
+  border-top-color: #3d4f58;
+}
+
+#mongodb-ai-playground.dark-theme .benchmark-category-title {
+  color: #6ee7a8;
+}
+
+#mongodb-ai-playground.dark-theme .benchmark-detail-label {
+  color: #c1c7c6;
+}
+
+#mongodb-ai-playground.dark-theme .benchmark-explain-card.benchmark-expected-card {
+  background-color: rgba(0, 237, 100, 0.16);
+  background-image: none;
+  border-color: rgba(0, 237, 100, 0.35);
+  box-shadow: 0 0 0 1px rgba(0, 237, 100, 0.18);
+}
+
+
+/* Dark Mode Scrollbar Overrides (using a lighter thumb color) */
+#mongodb-ai-playground.dark-theme #document-view:hover::-webkit-scrollbar-thumb,
+#mongodb-ai-playground.dark-theme #document-view:active::-webkit-scrollbar-thumb,
+#mongodb-ai-playground.dark-theme #chunks-table-container:hover::-webkit-scrollbar-thumb,
+#mongodb-ai-playground.dark-theme #chunks-table-container:active::-webkit-scrollbar-thumb,
+#mongodb-ai-playground.dark-theme #doc-list-container:hover::-webkit-scrollbar-thumb,
+#mongodb-ai-playground.dark-theme #doc-list-container:active::-webkit-scrollbar-thumb,
+#mongodb-ai-playground.dark-theme #rag-answer:hover::-webkit-scrollbar-thumb,
+#mongodb-ai-playground.dark-theme #rag-answer:active::-webkit-scrollbar-thumb,
+#mongodb-ai-playground.dark-theme .chunk-card-container:hover::-webkit-scrollbar-thumb,
+#mongodb-ai-playground.dark-theme .chunk-card-container:active::-webkit-scrollbar-thumb,
+#mongodb-ai-playground.dark-theme #doc-list-container .doc-card-container:hover::-webkit-scrollbar-thumb,
+#mongodb-ai-playground.dark-theme #doc-list-container .doc-card-container:active::-webkit-scrollbar-thumb,
+#mongodb-ai-playground.dark-theme #settings-section:hover::-webkit-scrollbar-thumb,
+#mongodb-ai-playground.dark-theme #settings-section:active::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Dark Mode: Firefox scrollbar color override */
+#mongodb-ai-playground.dark-theme #document-view,
+#mongodb-ai-playground.dark-theme #chunks-table-container,
+#mongodb-ai-playground.dark-theme #doc-list-container,
+#mongodb-ai-playground.dark-theme #rag-answer,
+#mongodb-ai-playground.dark-theme .chunk-card-container,
+#mongodb-ai-playground.dark-theme #doc-list-container .doc-card-container,
+#mongodb-ai-playground.dark-theme #settings-section {
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+}
+
+/* --- END SCROLLBAR AUTO-HIDE STYLES --- */
+
+
+/* Document preview box - keeping remaining original styles */
+#document-view {
+  flex: 1;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1rem;
+  background: #fff;
+  font-family: "Euclid Circular A", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  white-space: pre-wrap;
+}
+
+/* RAG answer box - same styling as document-view */
+#rag-answer {
+  flex: 1;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1rem;
+  background: #fff;
+  font-family: "Euclid Circular A", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+#rag-answer pre {
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin: 0;
+  font-family: inherit;
+}
+
+/* Chunks table container */
+#chunks-table-container {
+  flex: 1;
+}
+
+#doc-list-container {
+  flex: 1 1 auto;
+  min-height: 0;
+  gap: 1rem;
+  padding: 0rem;
+}
+
+/* The container for all chunk cards */
+.chunk-card-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 0rem;
+}
+
+/* Each chunk card */
+.chunk-card {
+  position: relative;
+  background: #f9f9f9;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  padding: 1rem;
+  /* FONT FIX: Apply primary font family */
+  font-family: "Euclid Circular A", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+/* The tag showing page and chunk number */
+.chunk-tag {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: #fff;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  padding: 0.2rem 0.6rem;
+  text-transform: uppercase;
+}
+
+/* Chunk text area */
+.chunk-text {
+  margin-top: 1.5rem;
+  white-space: pre-wrap;
+}
+
+/* Mongo doc list */
+.doc-card-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 0rem;
+}
+
+.doc-card {
+  background: #fff;
+  padding: 1rem;
+  border: 1px solid #e1e4e8;
+  border-radius: 6px;
+  min-width: 0;
+  /* FONT FIX: Apply primary font family */
+  font-family: "Euclid Circular A", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 12px;
+}
+
+.doc-key {
+  font-weight: bold;
+  color: #000;
+}
+
+.doc-value {
+  color: #24292e;
+}
+
+.doc-value-id {
+  color: #D9472B;
+}
+
+.doc-value-text {
+  color: #5aa381;
+}
+
+.doc-value-embedding {
+  color: #3A80EA;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+#chunking-section>div:nth-child(2),
+#rag-section>.two-column-layout {
+  display: flex;
+  gap: 3rem;
+  align-items: stretch;
+  /* <– important */
+  font-family: 'Euclid Circular A', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+/* RAG doc cards (retrieved documents) */
+.doc-tag {
+  background: #fff;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  padding: 0.2rem 0.6rem;
+}
+
+/* Green text for final prompt's documents */
+.green-doc-text {
+  color: #0b5d3a;
+}
+
+.sub-tabs-nav {
+  margin-bottom: 1rem;
+}
+
+#final-prompt-container {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1rem;
+  max-height: 300px;
+  width: 100% !important;
+  background: #fff;
+  /* FONT FIX: Apply primary font family to container/pre elements */
+  font-family: "Euclid Circular A", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  white-space: pre-wrap;
+}
+
+#final-prompt-container pre {
+  /* FONT FIX: Ensure pre uses the container font and not a default monospace */
+  font-family: inherit;
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loading {
+  color: #888888;
+}
+
+.section-titles {
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #889397;
+  font-size: 9px;
+  padding-right: 9px;
+  margin-top: 0px;
+  margin-bottom: 1rem;
+}
+
+/* UMAP Visualization Styles (Plotly-based) */
+.umap-visualization {
+  margin-bottom: 1rem;
+  padding: 0;
+  background: transparent;
+  border-radius: 8px;
+  width: 100%;
+  height: 300px;
+  flex-shrink: 0;
+}
+
+.umap-visualization > div {
+  width: 100%;
+  height: 100%;
+}
+
+/* Ensure Plotly plot is responsive */
+.umap-visualization .plotly {
+  width: 100%;
+  height: 100%;
+}
+
+/* Dark mode styles for UMAP visualization */
+#mongodb-ai-playground.dark-theme .umap-visualization {
+  background: transparent;
+}

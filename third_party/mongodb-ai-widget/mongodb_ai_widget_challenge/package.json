@@ -1,0 +1,23 @@
+{
+  "name": "mongodb-ai-widgets",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "build": "esbuild index.jsx --bundle --format=esm --outfile=index.js",
+    "build:watch": "esbuild index.jsx --bundle --format=esm --outfile=index.js --watch"
+  },
+  "dependencies": {
+    "@anywidget/react": "^0.2.0",
+    "@floating-ui/react": "^0.27.19",
+    "plotly.js-dist-min": "^2.35.2",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0",
+    "react-plotly.js": "^2.6.0",
+    "umap-js": "^1.4.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.24.0"
+  }
+}

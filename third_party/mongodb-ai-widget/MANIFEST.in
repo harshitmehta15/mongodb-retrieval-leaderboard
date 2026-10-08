@@ -1,0 +1,13 @@
+# Include only the root-level JS and CSS files (not node_modules)
+include mongodb_ai_widget_challenge/*.js
+include mongodb_ai_widget_challenge/*.css
+recursive-include mongodb_ai_widget_challenge *.py
+
+# Explicitly exclude node_modules and other build artifacts
+recursive-exclude mongodb_ai_widget_challenge/node_modules *
+recursive-exclude mongodb_ai_widget_challenge/dist *
+recursive-exclude mongodb_ai_widget_challenge/.vite *
+
+# Include README, LICENSE, and other important documentation
+include README.md
+include LICENSE
