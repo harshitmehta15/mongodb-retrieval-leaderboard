@@ -1,7 +1,8 @@
 from http.server import BaseHTTPRequestHandler
 from http import HTTPStatus
+from urllib.parse import urlparse
 
-from ._shared import json_response, save_submission_from_handler, text_response
+from ._shared import CHALLENGE_CONFIG, json_response, leaderboard_collection, load_leaderboard, save_submission_from_handler, text_response
 
 
 HTML = r"""
@@ -100,6 +101,19 @@ HTML = r"""
 
 class handler(BaseHTTPRequestHandler):
     def do_GET(self):
+        path = urlparse(self.path).path
+        if path == "/api/config":
+            json_response(self, CHALLENGE_CONFIG)
+            return
+        if path == "/api/health":
+            json_response(self, {"ok": True, "leaderboard_configured": leaderboard_collection() is not None})
+            return
+        if path == "/api/submissions":
+            try:
+                json_response(self, {"submissions": load_leaderboard(limit=50)})
+            except Exception as exc:
+                json_response(self, {"error": str(exc)}, HTTPStatus.INTERNAL_SERVER_ERROR)
+            return
         text_response(self, HTML)
 
     def do_POST(self):

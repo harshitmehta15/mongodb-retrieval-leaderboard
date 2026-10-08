@@ -1,5 +1,8 @@
 {
   "rewrites": [
+    { "source": "/api/config", "destination": "/api/config" },
+    { "source": "/api/health", "destination": "/api/health" },
+    { "source": "/api/submissions", "destination": "/api/submissions" },
     { "source": "/", "destination": "/api/index" }
   ],
   "functions": {
