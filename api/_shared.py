@@ -147,8 +147,13 @@ def load_leaderboard(limit=50):
     collection = leaderboard_collection()
     if collection is None:
         return []
-    docs = collection.find(
-        {"dataset_id": CHALLENGE_CONFIG["dataset_id"]},
-        {"_id": 0, "public_name": 1, "overall_score": 1, "accuracy_score": 1, "latency_score": 1, "cost_score": 1, "created_at": 1},
-    ).sort("overall_score", DESCENDING).limit(int(limit))
+    docs = collection.aggregate([
+        {"$match": {"dataset_id": CHALLENGE_CONFIG["dataset_id"]}},
+        {"$sort": {"overall_score": DESCENDING, "accuracy_score": DESCENDING, "cost_score": DESCENDING, "created_at": DESCENDING}},
+        {"$group": {"_id": "$public_name", "doc": {"$first": "$$ROOT"}}},
+        {"$replaceRoot": {"newRoot": "$doc"}},
+        {"$sort": {"overall_score": DESCENDING, "accuracy_score": DESCENDING, "cost_score": DESCENDING, "created_at": DESCENDING}},
+        {"$limit": int(limit)},
+        {"$project": {"_id": 0, "public_name": 1, "overall_score": 1, "accuracy_score": 1, "latency_score": 1, "cost_score": 1, "created_at": 1}},
+    ])
     return [public_submission(doc, rank=index + 1) for index, doc in enumerate(docs)]
