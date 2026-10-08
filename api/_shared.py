@@ -127,7 +127,7 @@ def save_submission_from_handler(handler):
     client_ip = handler.headers.get("x-forwarded-for", "").split(",")[0].strip()
     doc = build_submission(payload, client_ip=client_ip)
     collection.insert_one(doc)
-    json_response(handler, {"ok": True, "submission": {k: v for k, v in doc.items() if k not in {"_id", "client_ip_hint", "name"}}})
+    json_response(handler, {"ok": True, "submission": public_submission(doc)})
 
 
 def public_submission(doc, rank=None):
