@@ -7,6 +7,8 @@ This repo contains:
 - `api/`: Vercel Python serverless API and leaderboard UI.
 - `third_party/mongodb-ai-widget/`: vendored challenge widget source, for optional Colab installation from this repo.
 
+Vercel should deploy only the root leaderboard app. The vendored widget is ignored during Vercel deployment via `.vercelignore` and is not a Vercel service.
+
 It does not contain participant credentials, MongoDB connection strings, model API keys, host notes, source notebooks, benchmark answers, or event-internal reports.
 
 ## Deploy To Vercel

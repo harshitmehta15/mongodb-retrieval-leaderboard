@@ -1,0 +1,6 @@
+third_party/
+.git/
+.gitignore
+.DS_Store
+__pycache__/
+*.py[cod]
