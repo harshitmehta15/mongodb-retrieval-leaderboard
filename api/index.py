@@ -44,7 +44,7 @@ HTML = r"""
       <div class="card">
         <div class="pill">MongoDB User Group Dublin · 8 Oct 2026</div>
         <h1>Retrieval Challenge</h1>
-        <p>Tune retrieval over Dublin City Council's Digital Transformation Strategy. Run the benchmark in the notebook, then submit your score here without exposing any database or model credentials in the browser.</p>
+      <p>Tune retrieval over Dublin City Council's Digital Transformation Strategy. Run the benchmark and submit your score from the notebook. This page shows the leaderboard only.</p>
         <p><strong>Submission deadline:</strong> 08 Oct 2026, 8:50 PM Dublin time.</p>
         <div class="grid">
           <div class="metric"><span>Questions</span><strong id="qCount">18</strong></div>
@@ -61,29 +61,9 @@ HTML = r"""
     </section>
 
     <section class="card" style="margin-top:24px">
-      <h2>Submit Score</h2>
-      <p>Paste the JSON export from the notebook or fill in the score fields manually. Real names are shown on the leaderboard.</p>
-      <label for="name">Real name</label>
-      <input id="name" autocomplete="name" placeholder="Ada Lovelace" />
-      <label for="code">Submission code, if provided by host</label>
-      <input id="code" placeholder="Optional event code" />
-      <label for="jsonExport">Notebook JSON export</label>
-      <textarea id="jsonExport" placeholder='Paste { "summary": { "overall_score": ... } } here'></textarea>
-      <div class="two">
-        <div><label for="overall">Overall</label><input id="overall" type="number" min="0" max="100" step="0.0001" /></div>
-        <div><label for="accuracy">Accuracy</label><input id="accuracy" type="number" min="0" max="100" step="0.0001" /></div>
-        <div><label for="latency">Latency</label><input id="latency" type="number" min="0" max="100" step="0.0001" /></div>
-        <div><label for="cost">Cost</label><input id="cost" type="number" min="0" max="100" step="0.0001" /></div>
-      </div>
-      <label for="notes">What changed?</label>
-      <textarea id="notes" placeholder="Example: enabled hybrid search, chunk size 650, rerank top 3"></textarea>
-      <button onclick="submitScore()">Submit Score</button>
-      <button class="secondary" onclick="loadLeaderboard()">Refresh Leaderboard</button>
-      <div id="status" class="status"></div>
-    </section>
-
-    <section class="card" style="margin-top:24px">
       <h2>Leaderboard</h2>
+      <p>Scores are submitted from the participant notebook. Real names are shown on the leaderboard.</p>
+      <button class="secondary" onclick="loadLeaderboard()">Refresh Leaderboard</button>
       <table>
         <thead><tr><th>Rank</th><th>Name</th><th>Overall</th><th>Accuracy</th><th>Latency</th><th>Cost</th></tr></thead>
         <tbody id="leaderboard"><tr><td colspan="6">Loading...</td></tr></tbody>
@@ -96,39 +76,6 @@ HTML = r"""
       const cfg = await res.json();
       document.getElementById('qCount').textContent = cfg.question_count;
       document.getElementById('rules').textContent = `Top K ${cfg.constraints.min_k}-${cfg.constraints.max_k}; chunk size ${cfg.constraints.min_chunk_size}-${cfg.constraints.max_chunk_size}; models: ${cfg.embedding_models.join(', ')}; rerankers: ${cfg.reranker_models.join(', ')}.`;
-    }
-    function parseExport() {
-      const raw = document.getElementById('jsonExport').value.trim();
-      if (!raw) return {};
-      const parsed = JSON.parse(raw);
-      return parsed.summary || parsed;
-    }
-    async function submitScore() {
-      const status = document.getElementById('status');
-      status.textContent = 'Submitting...';
-      status.className = 'status';
-      try {
-        const exported = parseExport();
-        const payload = {
-          name: document.getElementById('name').value,
-          consent_public_name: true,
-          submission_code: document.getElementById('code').value,
-          notes: document.getElementById('notes').value,
-          overall_score: exported.overall_score ?? document.getElementById('overall').value,
-          accuracy_score: exported.accuracy_score ?? document.getElementById('accuracy').value,
-          latency_score: exported.latency_score ?? document.getElementById('latency').value,
-          cost_score: exported.cost_score ?? document.getElementById('cost').value
-        };
-        const res = await fetch('/api/submissions', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
-        const data = await res.json();
-        if (!res.ok) throw new Error(data.error || 'Submission failed');
-        status.textContent = 'Submitted.';
-        status.className = 'status ok';
-        await loadLeaderboard();
-      } catch (err) {
-        status.textContent = err.message;
-        status.className = 'status warn';
-      }
     }
     async function loadLeaderboard() {
       const body = document.getElementById('leaderboard');

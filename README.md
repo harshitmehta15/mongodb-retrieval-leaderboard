@@ -27,14 +27,14 @@ Optional environment variable:
 
 ## Routes
 
-- `/`: leaderboard and score submission UI.
+- `/`: leaderboard UI.
 - `/api/config`: challenge metadata.
 - `/api/submissions`: `GET` leaderboard and `POST` score submission.
 - `/api/health`: health check.
 
 ## Notebook Integration
 
-After Vercel deployment, set the participant notebook submission URL to:
+Scores should be submitted from the participant notebook. After Vercel deployment, set the participant notebook submission URL to:
 
 ```python
 SUBMISSION_API_URL = "https://YOUR-VERCEL-APP.vercel.app/api/submissions"
