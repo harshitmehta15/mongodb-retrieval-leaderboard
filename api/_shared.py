@@ -117,6 +117,19 @@ def build_submission(payload, client_ip=""):
     }
 
 
+def save_submission_from_handler(handler):
+    collection = leaderboard_collection()
+    if collection is None:
+        json_response(handler, {"error": "Leaderboard MongoDB environment variables are not configured."}, HTTPStatus.SERVICE_UNAVAILABLE)
+        return
+    payload = read_json_body(handler)
+    require_submission_code(payload)
+    client_ip = handler.headers.get("x-forwarded-for", "").split(",")[0].strip()
+    doc = build_submission(payload, client_ip=client_ip)
+    collection.insert_one(doc)
+    json_response(handler, {"ok": True, "submission": {k: v for k, v in doc.items() if k not in {"_id", "client_ip_hint", "name"}}})
+
+
 def public_submission(doc, rank=None):
     row = {
         "rank": rank,

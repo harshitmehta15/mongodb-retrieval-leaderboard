@@ -1,6 +1,7 @@
 from http.server import BaseHTTPRequestHandler
+from http import HTTPStatus
 
-from ._shared import text_response
+from ._shared import json_response, save_submission_from_handler, text_response
 
 
 HTML = r"""
@@ -100,3 +101,13 @@ HTML = r"""
 class handler(BaseHTTPRequestHandler):
     def do_GET(self):
         text_response(self, HTML)
+
+    def do_POST(self):
+        try:
+            save_submission_from_handler(self)
+        except PermissionError as exc:
+            json_response(self, {"error": str(exc)}, HTTPStatus.FORBIDDEN)
+        except ValueError as exc:
+            json_response(self, {"error": str(exc)}, HTTPStatus.BAD_REQUEST)
+        except Exception as exc:
+            json_response(self, {"error": str(exc)}, HTTPStatus.INTERNAL_SERVER_ERROR)
