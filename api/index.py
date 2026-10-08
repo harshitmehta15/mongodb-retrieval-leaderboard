@@ -13,63 +13,85 @@ HTML = r"""
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Dublin MUG Retrieval Challenge</title>
   <style>
-    :root { color-scheme: light; --green: #13aa52; --ink: #001e2b; --muted: #5c6c75; --line: #d8e1dd; --bg: #f6faf8; }
-    body { margin: 0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: var(--bg); color: var(--ink); }
-    main { max-width: 1080px; margin: 0 auto; padding: 48px 20px 72px; }
-    .hero { display: grid; grid-template-columns: 1.4fr .9fr; gap: 24px; align-items: stretch; }
-    .card { background: white; border: 1px solid var(--line); border-radius: 24px; padding: 24px; box-shadow: 0 18px 50px rgba(0, 30, 43, .06); }
-    h1 { font-size: clamp(32px, 5vw, 58px); line-height: 1; margin: 0 0 18px; letter-spacing: -.04em; }
-    h2 { font-size: 22px; margin: 0 0 16px; }
-    p { color: var(--muted); line-height: 1.55; }
-    .pill { display: inline-flex; gap: 8px; align-items: center; padding: 8px 12px; border-radius: 999px; background: #e8f7f0; color: #0b6b3a; font-weight: 700; font-size: 13px; margin-bottom: 18px; }
-    .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 18px; }
-    .metric { border: 1px solid var(--line); border-radius: 18px; padding: 16px; background: #fbfefd; }
-    .metric strong { display: block; font-size: 26px; }
-    label { display: block; font-weight: 700; margin: 14px 0 7px; }
-    input, textarea { width: 100%; box-sizing: border-box; border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; font: inherit; background: white; }
-    textarea { min-height: 110px; resize: vertical; }
-    button { border: 0; border-radius: 999px; padding: 12px 18px; background: var(--green); color: white; font-weight: 800; cursor: pointer; margin-top: 16px; }
-    button.secondary { background: var(--ink); }
-    .two { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-    table { width: 100%; border-collapse: collapse; margin-top: 12px; }
-    th, td { text-align: left; padding: 12px; border-bottom: 1px solid var(--line); }
-    th { font-size: 13px; color: var(--muted); }
-    .status { margin-top: 12px; font-weight: 700; }
-    .warn { color: #8a5a00; }
-    .ok { color: #0b6b3a; }
-    @media (max-width: 820px) { .hero, .two, .grid { grid-template-columns: 1fr; } }
+    :root { color-scheme: dark; --bg: #011e2b; --panel: #1c2d38; --panel-2: #112733; --line: #3d4f58; --line-hot: #00ed64; --green: #13aa52; --green-dark: #00684a; --text: #f9fafb; --muted: #b7c0c3; --soft: #e8edeb; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: "Euclid Circular A", "Helvetica Neue", Helvetica, Arial, sans-serif; background: radial-gradient(circle at top left, rgba(0, 237, 100, .14), transparent 34rem), var(--bg); color: var(--text); }
+    main { max-width: 1120px; margin: 0 auto; padding: 24px 16px 56px; }
+    .shell { border: 1px solid var(--line); border-radius: 14px; background: rgba(28, 45, 56, .92); box-shadow: 0 24px 70px rgba(0, 0, 0, .28); overflow: hidden; }
+    .widget-header { display: flex; justify-content: space-between; gap: 18px; align-items: flex-start; padding: 22px 24px 16px; border-bottom: 1px solid var(--line); }
+    .eyebrow { color: var(--line-hot); font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 8px; }
+    h1 { margin: 0; font-family: "MongoDB Value Serif", Georgia, "Times New Roman", serif; font-size: clamp(34px, 5vw, 54px); line-height: 1; font-weight: 400; color: var(--text); }
+    p { color: var(--muted); line-height: 1.55; margin: 10px 0 0; }
+    .deadline { min-width: 230px; padding: 14px 16px; border: 1px solid #124151; border-radius: 12px; background: var(--panel-2); }
+    .deadline span { display: block; color: var(--muted); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; }
+    .deadline strong { display: block; margin-top: 5px; color: var(--soft); font-size: 15px; }
+    .steps-nav { display: flex; gap: 22px; padding: 0 24px; border-bottom: 1px solid var(--line); }
+    .step { padding: 13px 0 11px; color: var(--muted); font-size: 13px; font-weight: 600; border-bottom: 3px solid transparent; }
+    .step.active { color: var(--soft); border-bottom-color: var(--line-hot); }
+    .content-wrapper { padding: 18px; }
+    .summary-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 18px; }
+    .summary-card { border: 1px solid #124151; border-radius: 12px; background: var(--panel-2); padding: 14px; }
+    .summary-card span { color: var(--muted); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; }
+    .summary-card strong { display: block; margin-top: 8px; color: var(--text); font-size: 24px; line-height: 1; }
+    .leaderboard-card { border: 1px solid var(--line); border-radius: 12px; background: var(--panel); overflow: hidden; }
+    .leaderboard-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 18px; border-bottom: 1px solid var(--line); }
+    h2 { margin: 0; font-family: "MongoDB Value Serif", Georgia, "Times New Roman", serif; font-size: 28px; font-weight: 400; }
+    button { appearance: none; display: inline-flex; align-items: center; justify-content: center; height: 36px; padding: 0 14px; border-radius: 6px; border: 1px solid var(--line-hot); background: var(--green-dark); color: white; font: inherit; font-size: 13px; font-weight: 600; cursor: pointer; }
+    button:hover { background: #00593f; box-shadow: 0 0 0 3px rgba(0, 237, 100, .16); }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { text-align: left; padding: 13px 16px; border-bottom: 1px solid var(--line); }
+    th { color: var(--muted); background: #0b2532; font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+    td { color: var(--soft); font-size: 14px; }
+    tbody tr:hover { background: rgba(0, 237, 100, .05); }
+    tbody tr:last-child td { border-bottom: 0; }
+    .rank { color: var(--line-hot); font-weight: 700; }
+    .score { font-variant-numeric: tabular-nums; font-weight: 700; }
+    @media (max-width: 820px) { .widget-header { flex-direction: column; } .deadline { width: 100%; } .summary-grid { grid-template-columns: repeat(2, 1fr); } th, td { padding: 11px 10px; } }
+    @media (max-width: 560px) { main { padding: 10px; } .summary-grid { grid-template-columns: 1fr; } .steps-nav { overflow-x: auto; } table { font-size: 12px; } }
   </style>
 </head>
 <body>
   <main>
-    <section class="hero">
-      <div class="card">
-        <div class="pill">MongoDB User Group Dublin · 8 Oct 2026</div>
-        <h1>Retrieval Challenge</h1>
-      <p>Tune retrieval over Dublin City Council's Digital Transformation Strategy. Run the benchmark and submit your score from the notebook. This page shows the leaderboard only.</p>
-        <p><strong>Submission deadline:</strong> 08 Oct 2026, 8:50 PM Dublin time.</p>
-        <div class="grid">
-          <div class="metric"><span>Questions</span><strong id="qCount">18</strong></div>
-          <div class="metric"><span>Accuracy</span><strong>0.4</strong></div>
-          <div class="metric"><span>Latency</span><strong>0.2</strong></div>
-          <div class="metric"><span>Cost</span><strong>0.4</strong></div>
+    <section class="shell">
+      <header class="widget-header">
+        <div>
+          <div class="eyebrow">MongoDB User Group Dublin · Retrieval Challenge</div>
+          <h1>Leaderboard</h1>
+          <p>Scores are submitted from the participant notebook after running the benchmark.</p>
         </div>
+        <div class="deadline">
+          <span>Submission Deadline</span>
+          <strong>08 Oct 2026, 8:50 PM</strong>
+        </div>
+      </header>
+      <nav class="steps-nav" aria-label="Challenge stages">
+        <div class="step">Chunking</div>
+        <div class="step">Embedding</div>
+        <div class="step">Retrieval</div>
+        <div class="step">Reranking</div>
+        <div class="step active">Benchmark</div>
+      </nav>
+      <div class="content-wrapper">
+        <div class="summary-grid">
+          <div class="summary-card"><span>Questions</span><strong id="qCount">18</strong></div>
+          <div class="summary-card"><span>Accuracy Weight</span><strong>0.4</strong></div>
+          <div class="summary-card"><span>Latency Weight</span><strong>0.2</strong></div>
+          <div class="summary-card"><span>Cost Weight</span><strong>0.4</strong></div>
+        </div>
+        <section class="leaderboard-card">
+          <div class="leaderboard-head">
+            <div>
+              <h2>Top Runs</h2>
+              <p>Best score per participant. Real names are shown.</p>
+            </div>
+            <button onclick="loadLeaderboard()">Refresh</button>
+          </div>
+          <table>
+            <thead><tr><th>Rank</th><th>Name</th><th>Overall</th><th>Accuracy</th><th>Latency</th><th>Cost</th></tr></thead>
+            <tbody id="leaderboard"><tr><td colspan="6">Loading...</td></tr></tbody>
+          </table>
+        </section>
       </div>
-      <div class="card">
-        <h2>Fixed Rules</h2>
-        <p id="rules">Loading challenge config...</p>
-        <p class="warn">Friendly challenge: benchmark answers are client-visible in the notebook. Use held-out evaluation for prizes.</p>
-      </div>
-    </section>
-
-    <section class="card" style="margin-top:24px">
-      <h2>Leaderboard</h2>
-      <p>Scores are submitted from the participant notebook. Real names are shown on the leaderboard.</p>
-      <button class="secondary" onclick="loadLeaderboard()">Refresh Leaderboard</button>
-      <table>
-        <thead><tr><th>Rank</th><th>Name</th><th>Overall</th><th>Accuracy</th><th>Latency</th><th>Cost</th></tr></thead>
-        <tbody id="leaderboard"><tr><td colspan="6">Loading...</td></tr></tbody>
-      </table>
     </section>
   </main>
   <script>
@@ -77,7 +99,6 @@ HTML = r"""
       const res = await fetch('/api/config');
       const cfg = await res.json();
       document.getElementById('qCount').textContent = cfg.question_count;
-      document.getElementById('rules').textContent = `Top K ${cfg.constraints.min_k}-${cfg.constraints.max_k}; chunk size ${cfg.constraints.min_chunk_size}-${cfg.constraints.max_chunk_size}; models: ${cfg.embedding_models.join(', ')}; rerankers: ${cfg.reranker_models.join(', ')}.`;
     }
     async function loadLeaderboard() {
       const body = document.getElementById('leaderboard');
@@ -86,7 +107,7 @@ HTML = r"""
         const data = await res.json();
         const rows = data.submissions || [];
         const escapeHtml = (value) => String(value ?? '').replace(/[&<>'"]/g, (char) => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'}[char]));
-        body.innerHTML = rows.length ? rows.map(row => `<tr><td>${row.rank}</td><td>${escapeHtml(row.name)}</td><td>${Number(row.overall_score).toFixed(1)}</td><td>${Number(row.accuracy_score).toFixed(1)}</td><td>${Number(row.latency_score).toFixed(1)}</td><td>${Number(row.cost_score).toFixed(1)}</td></tr>`).join('') : '<tr><td colspan="6">No submissions yet, or leaderboard is not configured.</td></tr>';
+        body.innerHTML = rows.length ? rows.map(row => `<tr><td class="rank">#${row.rank}</td><td>${escapeHtml(row.name)}</td><td class="score">${Number(row.overall_score).toFixed(1)}</td><td>${Number(row.accuracy_score).toFixed(1)}</td><td>${Number(row.latency_score).toFixed(1)}</td><td>${Number(row.cost_score).toFixed(1)}</td></tr>`).join('') : '<tr><td colspan="6">No submissions yet.</td></tr>';
       } catch (err) {
         body.innerHTML = '<tr><td colspan="6">Could not load leaderboard.</td></tr>';
       }
